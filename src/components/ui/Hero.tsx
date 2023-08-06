@@ -65,18 +65,85 @@ const Hero = () => {
           </Grid>
 
           <Grid item xs={12} md={4}>
-            <Typography
-              sx={{
-                color: 'white',
-                fontSize: 14,
-                textAlign: 'justify',
-                mt: 2,
-              }}
-            >
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias
-              reiciendis exercitationem quoLorem ipsum dolor sit amet
-              consectetur adipisicing adipisicing elit. Molestias
-            </Typography>
+            <Grid container>
+              <Grid item xs={12} sx={{ mb: 3 }}>
+                <Typography
+                  sx={{
+                    color: 'white',
+                    fontSize: 15,
+                    textAlign: 'justify',
+                    mt: 2,
+                  }}
+                >
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Molestias reiciendis exercitationem quoLorem ipsum dolor sit
+                  amet consectetur adipisicing adipisicing elit.
+                </Typography>
+              </Grid>
+              <Grid item xs={4}>
+                <Typography
+                  sx={{
+                    color: 'white',
+                    fontSize: 20,
+                    textAlign: 'justify',
+                    fontWeight: 'bold',
+                  }}
+                >
+                  12K <span className="text-[#34C9B0]">+</span>
+                </Typography>
+                <Typography
+                  sx={{
+                    color: 'white',
+                    fontSize: 12,
+                    textAlign: 'justify',
+                  }}
+                >
+                  Readers
+                </Typography>
+              </Grid>
+              <Grid item xs={4}>
+                <Typography
+                  sx={{
+                    color: 'white',
+                    fontSize: 20,
+                    textAlign: 'justify',
+                    fontWeight: 'bold',
+                  }}
+                >
+                  54K <span className="text-[#34C9B0]">+</span>
+                </Typography>
+                <Typography
+                  sx={{
+                    color: 'white',
+                    fontSize: 12,
+                    textAlign: 'justify',
+                  }}
+                >
+                  Free Books
+                </Typography>
+              </Grid>
+              <Grid item xs={4}>
+                <Typography
+                  sx={{
+                    color: 'white',
+                    fontSize: 20,
+                    textAlign: 'justify',
+                    fontWeight: 'bold',
+                  }}
+                >
+                  100K <span className="text-[#34C9B0]">+</span>
+                </Typography>
+                <Typography
+                  sx={{
+                    color: 'white',
+                    fontSize: 12,
+                    textAlign: 'justify',
+                  }}
+                >
+                  Reviews
+                </Typography>
+              </Grid>
+            </Grid>
           </Grid>
         </Grid>
       </Container>

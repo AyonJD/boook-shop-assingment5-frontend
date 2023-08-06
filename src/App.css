@@ -62,7 +62,7 @@ body {
 
 .hero_section {
   background: linear-gradient(45deg, #00020f, #062c31, #00020f);
-  min-height: 100vh;
+  min-height: 90vh;
 }
 
 .customButton_outlined {
