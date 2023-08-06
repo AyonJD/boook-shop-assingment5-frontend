@@ -14,6 +14,7 @@ import MenuItem from '@mui/material/MenuItem'
 import AdbIcon from '@mui/icons-material/Adb'
 // import { COLORS } from '@/constant/colors'
 import CustomButton from './CustomButton'
+import { COLORS } from '@/constant/colors'
 
 const pages = [{ name: 'Books', path: '/book' }]
 // const settings = ['Logout']
@@ -47,7 +48,13 @@ function Navbar() {
     >
       <Container maxWidth="lg">
         <Toolbar disableGutters>
-          <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
+          <AdbIcon
+            sx={{
+              display: { xs: 'none', md: 'flex' },
+              mr: 1,
+              color: COLORS.PRIMARY,
+            }}
+          />
           <Typography
             variant="h6"
             noWrap
@@ -59,7 +66,7 @@ function Navbar() {
               fontFamily: 'monospace',
               fontWeight: 700,
               letterSpacing: '.3rem',
-              color: 'inherit',
+              color: COLORS.PRIMARY,
               textDecoration: 'none',
             }}
           >

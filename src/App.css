@@ -89,6 +89,7 @@ body {
   overflow: hidden;
   padding-top: 80px;
   background: linear-gradient(45deg, #00020f, #062c31, #00020f);
+  margin-right: 0 !important;
 }
 
 .scroll-section-inner {
@@ -174,4 +175,15 @@ body {
   font-family: 'Source Code Pro', cursive;
   background: linear-gradient(45deg, #062c31, #00020f);
   box-shadow: 2px 2px 5px #062c31;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(transparent, #34c9b0);
+  border-radius: 6px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(transparent, #00020f);
 }
