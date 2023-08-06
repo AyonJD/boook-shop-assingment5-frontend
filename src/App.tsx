@@ -1,9 +1,12 @@
 import './App.css'
+import Books from './components/ui/Books'
+import Hero from './components/ui/Hero'
 
 function App() {
   return (
     <>
-      <h1 className="text-red-600">Welcome</h1>
+      <Hero />
+      <Books />
     </>
   )
 }

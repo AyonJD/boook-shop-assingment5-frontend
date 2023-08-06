@@ -1,0 +1,85 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+body {
+  font-family: 'Poppins', sans-serif !important;
+}
+
+#nav-link {
+  color: #fff;
+  font-size: 13px;
+  text-decoration: none;
+  text-transform: uppercase;
+  padding: 5px 10px;
+  margin: 0px 10px;
+  position: relative;
+  transition: all 0.5s;
+  font-weight: 600;
+  font-family: 'Poppins', sans-serif !important;
+}
+
+#nav-link:hover {
+  background-color: #34C9B0;
+  color: #fff;
+  font-weight: 600;
+}
+
+#nav-link:before {
+  content: '';
+  position: absolute;
+  bottom: 12px;
+  left: 12px;
+  width: 12px;
+  height: 12px;
+  border: 3px solid #34C9B0;
+  border-width: 0 0 3px 3px;
+  opacity: 0;
+  transition: all 0.3s;
+}
+
+#nav-link:hover:before {
+  opacity: 1;
+  bottom: -8px;
+  left: -8px;
+}
+
+#nav-link:after {
+  content: '';
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 12px;
+  height: 12px;
+  border: 3px solid #34C9B0;
+  border-width: 3px 3px 0 0;
+  opacity: 0;
+  transition: all 0.3s;
+}
+
+#nav-link:hover:after {
+  opacity: 1;
+  top: -8px;
+  right: -8px;
+}
+
+.hero_section {
+  background: linear-gradient(45deg, #00020f, #062c31, #00020f);
+  min-height: 100vh;
+}
+
+.customButton_outlined {
+  border: 1px solid #fff;
+  color: #fff;
+  background-color: transparent;
+  padding: 5px 20px;
+  border-radius: 5px;
+  font-size: 15px;
+  transition: all 0.5s;
+  font-weight: 600;
+  font-family: 'Poppins', sans-serif !important;
+}
+
+.customButton_outlined:hover {
+  background-color: #34C9B0;
+  color: #fff;
+  font-weight: 600;
+  border: 1px solid #34C9B0;
+}
