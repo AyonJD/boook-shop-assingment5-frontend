@@ -41,9 +41,9 @@ function Navbar() {
 
   return (
     <AppBar
-      className="navbar"
+      id="navbar"
       sx={{ background: 'transparent', boxShadow: 'none' }}
-      position="sticky"
+      position="fixed"
     >
       <Container maxWidth="lg">
         <Toolbar disableGutters>
