@@ -41,10 +41,11 @@ function Navbar() {
 
   return (
     <AppBar
+      className="navbar"
       sx={{ background: 'transparent', boxShadow: 'none' }}
       position="sticky"
     >
-      <Container maxWidth="xl">
+      <Container maxWidth="lg">
         <Toolbar disableGutters>
           <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
           <Typography
