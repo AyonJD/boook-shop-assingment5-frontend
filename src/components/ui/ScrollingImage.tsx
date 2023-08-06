@@ -32,7 +32,13 @@ const BOOK_AUTHOR = [
 ]
 const BOOK_RATING = [4, 3, 5, 4, 5]
 
-const BOOK_READ_BY = ['15K Readers', '10K Readers', '5K Readers', '1K Readers']
+const BOOK_READ_BY = [
+  '15K Readers',
+  '10K Readers',
+  '5K Readers',
+  '1K Readers',
+  '4K Readers',
+]
 
 const BOOK_DATA = Array.from({ length: 5 }, (_, i) => ({
   image: BOOK_IMAGE[i],

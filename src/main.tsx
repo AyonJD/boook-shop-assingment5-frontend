@@ -5,11 +5,15 @@ import { Provider } from 'react-redux'
 import './index.css'
 import routes from './routes'
 import { store } from './redux/store'
+import { ThemeProvider } from '@mui/material/styles'
+import theme from './theme/theme'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <Provider store={store}>
-      <RouterProvider router={routes} />
+      <ThemeProvider theme={theme}>
+        <RouterProvider router={routes} />
+      </ThemeProvider>
     </Provider>
   </React.StrictMode>
 )

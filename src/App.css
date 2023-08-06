@@ -87,13 +87,12 @@ body {
 
 .scroll-section-outer {
   overflow: hidden;
-  margin: 50px 0;
   padding-top: 80px;
   background: linear-gradient(45deg, #00020f, #062c31, #00020f);
 }
 
 .scroll-section-inner {
-  height: 100vh;
+  height: 80vh;
   width: 400vw;
   display: flex;
   flex-direction: row;
