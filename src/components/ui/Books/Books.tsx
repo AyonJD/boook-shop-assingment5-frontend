@@ -1,4 +1,5 @@
-import { useState } from 'react'
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { useEffect, useState } from 'react'
 import { GENRE_OPTION_ARRAY, PUBLICATION_YEAR_OPTION_ARRAY } from '@/constant'
 import { useGetAllBooksQuery } from '@/redux/features/book/book.api'
 import {
@@ -10,12 +11,37 @@ import {
   TextField,
 } from '@mui/material'
 import CloseIcon from '@mui/icons-material/Close'
+import { useAppDispatch, useAppSelector } from '@/redux/hook'
+import {
+  setGenre,
+  setPublicationYear,
+  setSearchTerm,
+} from '@/redux/features/book/bookFilterSlice'
+import BookLoader from '@/components/shared/BookLoader'
+import BooksCard, { IBooksCardProps } from './BooksCard'
 
 const Books = () => {
-  const [genre, setGenre] = useState<string[]>([])
-  const [publicationYear, setPublicationYear] = useState<string[]>([])
+  const [search, setSearch] = useState<string>('')
+  const { genre, publicationYear, searchTerm } = useAppSelector(
+    state => state.bookFilter
+  )
+  const dispatch = useAppDispatch()
+
   const { data, isLoading, error } = useGetAllBooksQuery(undefined)
-  console.log(data)
+
+  const handleGenreChange = (newValue: string[] | string) => {
+    dispatch(setGenre(newValue))
+  }
+
+  const handlePublicationYearChange = (newValue: string[] | string) => {
+    dispatch(setPublicationYear(newValue))
+  }
+
+  useEffect(() => {
+    if (searchTerm && search === '') dispatch(setSearchTerm(''))
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [searchTerm, search])
+  console.log(data?.data)
   return (
     <Container maxWidth="lg" className="py-20 ">
       <Grid container spacing={2}>
@@ -30,7 +56,7 @@ const Books = () => {
                   freeSolo
                   value={genre}
                   onChange={(event, newValue) => {
-                    setGenre(newValue)
+                    handleGenreChange(newValue)
                   }}
                   options={GENRE_OPTION_ARRAY}
                   getOptionLabel={option => option}
@@ -41,15 +67,13 @@ const Books = () => {
                 ></Autocomplete>
 
                 <div style={{ marginTop: '8px' }}>
-                  {genre?.map((option, index) => (
+                  {genre?.map(option => (
                     <Chip
                       key={option}
                       size="small"
                       label={option}
                       onDelete={() => {
-                        setGenre(prevValue =>
-                          prevValue?.filter(val => val !== option)
-                        )
+                        handleGenreChange(option)
                       }}
                       deleteIcon={<CloseIcon />}
                       style={{
@@ -72,7 +96,7 @@ const Books = () => {
                   freeSolo
                   value={publicationYear}
                   onChange={(event, newValue) => {
-                    setGenre(newValue)
+                    handlePublicationYearChange(newValue)
                   }}
                   options={PUBLICATION_YEAR_OPTION_ARRAY}
                   getOptionLabel={option => option}
@@ -83,15 +107,13 @@ const Books = () => {
                 ></Autocomplete>
 
                 <div style={{ marginTop: '8px' }}>
-                  {publicationYear?.map((option, index) => (
+                  {publicationYear?.map(option => (
                     <Chip
                       key={option}
                       size="small"
                       label={option}
                       onDelete={() => {
-                        setPublicationYear(prevValue =>
-                          prevValue?.filter(val => val !== option)
-                        )
+                        handlePublicationYearChange(option)
                       }}
                       deleteIcon={<CloseIcon />}
                       style={{
@@ -108,6 +130,7 @@ const Books = () => {
         <Grid item xs={12} sm={6} md={8} lg={9}>
           <div className="input-group relative flex items-stretch ">
             <input
+              onChange={e => setSearch(e.target.value)}
               type="search"
               className="form-control  relative flex-auto min-w-0 block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border-[1.5px] border-solid border-gray-400  transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-[2px] focus:border-[#34C9B0] focus:outline-none rounded-r-0 rounded-sm focus:border-r-0"
               placeholder="Search Products"
@@ -119,6 +142,7 @@ const Books = () => {
               className="btn px-6 py-2.5 bg-[#34C9B0] text-white font-medium text-xs leading-tight uppercase shadow-md hover:bg-[#00020F] hover:shadow-lg focus:bg-[#00020F]  focus:shadow-lg focus:outline-none focus:ring-0 active:bg-[#00020F] active:shadow-lg transition duration-150 ease-in-out flex items-center rounded-l-0"
               type="button"
               id="button-addon2"
+              onClick={() => dispatch(setSearchTerm(search))}
             >
               <svg
                 aria-hidden="true"
@@ -138,7 +162,19 @@ const Books = () => {
             </button>
           </div>
 
-          <Grid container sx={{mt:3}}>fhhgjkfh</Grid>
+          <Grid container sx={{ mt: 3 }}>
+            {isLoading ? (
+              <BookLoader />
+            ) : (
+              <>
+                {data?.data?.map((book: any, index: number) => (
+                  <Grid item xs={12} sm={6} md={4} lg={3} key={index}>
+                    <BooksCard book={book} />
+                  </Grid>
+                ))}
+              </>
+            )}
+          </Grid>
         </Grid>
       </Grid>
     </Container>

@@ -1,8 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit'
 import { api } from './api/apiSlice'
+import bookFilterReducer from './features/book/bookFilterSlice'
 
 export const store = configureStore({
   reducer: {
+    bookFilter: bookFilterReducer,
     // api: api.reducer,
     [api.reducerPath]: api.reducer,
   },
