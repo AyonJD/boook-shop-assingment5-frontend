@@ -1,5 +1,6 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { GENRE_OPTION_ARRAY, PUBLICATION_YEAR_OPTION_ARRAY } from '@/constant'
 import { useGetAllBooksQuery } from '@/redux/features/book/book.api'
 import {
@@ -18,16 +19,20 @@ import {
   setSearchTerm,
 } from '@/redux/features/book/bookFilterSlice'
 import BookLoader from '@/components/shared/BookLoader'
-import BooksCard, { IBooksCardProps } from './BooksCard'
+import BooksCard from '../components/ui/Books/BooksCard'
+import { multiFilterBook } from '@/helper'
 
 const Books = () => {
+  const [noDataFoundComponent, setNoDataFoundComponent] =
+    useState<React.ReactNode>(<BookLoader />)
   const [search, setSearch] = useState<string>('')
+  const [searchQuery, setSearchQuery] = useState<string>('')
   const { genre, publicationYear, searchTerm } = useAppSelector(
     state => state.bookFilter
   )
   const dispatch = useAppDispatch()
 
-  const { data, isLoading, error } = useGetAllBooksQuery(undefined)
+  const { data, isLoading, error } = useGetAllBooksQuery(searchQuery)
 
   const handleGenreChange = (newValue: string[] | string) => {
     dispatch(setGenre(newValue))
@@ -39,9 +44,25 @@ const Books = () => {
 
   useEffect(() => {
     if (searchTerm && search === '') dispatch(setSearchTerm(''))
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchTerm, search])
-  console.log(data?.data)
+
+  useEffect(() => {
+    const query = multiFilterBook({ genre, publicationYear, searchTerm })
+    setSearchQuery(query)
+
+    if (!data?.data?.length) {
+      setTimeout(() => {
+        setNoDataFoundComponent(
+          <div className="mt-2 flex items-center justify-center w-full ">
+            <h1 className="text-center">No Data Found</h1>
+          </div>
+        )
+      }, 6000)
+    }
+  }, [genre, publicationYear, searchTerm])
+
+  if (error) return <div>failed to load</div>
+
   return (
     <Container maxWidth="lg" className="py-20 ">
       <Grid container spacing={2}>
@@ -163,8 +184,8 @@ const Books = () => {
           </div>
 
           <Grid container sx={{ mt: 3 }}>
-            {isLoading ? (
-              <BookLoader />
+            {isLoading || !data?.data?.length ? (
+              noDataFoundComponent
             ) : (
               <>
                 {data?.data?.map((book: any, index: number) => (

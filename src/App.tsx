@@ -3,11 +3,11 @@ import './App.css'
 import Navbar from './components/shared/Navbar'
 import Hero from './components/ui/Hero'
 import HeroCard from './components/ui/HeroCard'
-import ScrollingImage from './components/ui/ScrollingImage'
+// import ScrollingImage from './components/ui/ScrollingImage'
 import { COLORS } from './constant/colors'
 import { gsap } from 'gsap'
 import { Box } from '@mui/material'
-import Books from './components/ui/Books/Books'
+import Books from './pages/Books'
 
 function App() {
   useEffect(() => {
@@ -39,7 +39,7 @@ function App() {
       </Box>
       <HeroCard />
       <Books />
-      <ScrollingImage />
+      {/* <ScrollingImage /> */}
     </>
   )
 }
